@@ -4,9 +4,9 @@ import time
 from flask import Flask, request
 import os
 
-TOKEN = '731187754:AAE4Z-g-KEMtBBL8vZq-rykJVobm3EsTB8A'
+TOKEN = '1106838946:AAGHfSIdPN4DezvJX7dMB82mK_tWihXLLnk'
 bot = telebot.TeleBot(token = TOKEN)
-server = Flask(__name__)
+# server = Flask(__name__)
 
 keyboard1 = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
 keyboard1.row('Подбрось монетку', 'Парадокс Монти Холла')
@@ -34,7 +34,7 @@ def send_text(message):
 def flip(message): 
     if message.text.lower() == 'бросай':
         bot.send_message(message.chat.id, 'Но ты ведь знаешь, что решение принимается тогда, когда монетка еще в полете? Она летиииит')
-        bot.send_document(message.chat.id, 'https://i.gifer.com/Ilp.gif')
+        bot.send_document(message.chat.id, random.choice(gifs))
         time.sleep(3)
         bot.send_message(message.chat.id, random.choice(coins), reply_markup=keyboard1)
     elif message.text.lower() == 'я передумал':
@@ -46,16 +46,17 @@ def flip(message):
 def sticker_id(message):
         print (message)
 
-@server.route ('/' + TOKEN, methods = ["POST"])
-def getMessage():
-    bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
-    return "!", 200
+# @server.route ('/' + TOKEN, methods = ["POST"])
+# def getMessage():
+#     bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
+#     return "!", 200
 
-@server.route ('/')
-def webhook():
-    bot.remove_webhook()
-    bot.set_webhook(url = "https://stormy-dusk-68640.herokuapp.com/" + TOKEN)
-    return "!", 200
+# @server.route ('/')
+# def webhook():
+#     bot.remove_webhook()
+#     bot.set_webhook(url = "https://stormy-dusk-68640.herokuapp.com/" + TOKEN)
+#     return "!", 200
 
-if __name__ == "__main__":
-    server.run(host ="0.0.0.0", port = int(os.environ.get("PORT", 5000)))
+# if __name__ == "__main__":
+#     server.run(host ="0.0.0.0", port = int(os.environ.get("PORT", 5000)))
+bot.polling(none_stop=True)
