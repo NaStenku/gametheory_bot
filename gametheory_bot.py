@@ -1,7 +1,12 @@
 import telebot
 import random
 import time
-bot = telebot.TeleBot('731187754:AAE4Z-g-KEMtBBL8vZq-rykJVobm3EsTB8A')
+from flask import Flask, request
+import os
+
+TOKEN = '731187754:AAE4Z-g-KEMtBBL8vZq-rykJVobm3EsTB8A'
+bot = telebot.TeleBot(token = TOKEN)
+server = Flask(__name__)
 
 keyboard1 = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
 keyboard1.row('Подбрось монетку', 'Парадокс Монти Холла')
@@ -41,7 +46,11 @@ def flip(message):
 def sticker_id(message):
         print (message)
 
-  
+@server.route ('/' + TOKEN, methods = ["POST"])
+def webhook():
+    bot.remove_webhook()
+    bot.set_webhook(url = "" + TOKEN)
+    return "!", 200
 
-
-bot.polling(none_stop=True)
+if __name__ == "__main__":
+    server.run(host ="0.0.0.0", port = int(os.environ.get("PORT", 5000)))
