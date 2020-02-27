@@ -34,7 +34,7 @@ def send_text(message):
 def flip(message): 
     if message.text.lower() == 'бросай':
         bot.send_message(message.chat.id, 'Но ты ведь знаешь, что решение принимается тогда, когда монетка еще в полете? Она летиииит')
-        bot.send_document(message.chat.id, 'https://i.gifer.com/Ilp.gif')
+        bot.send_document(message.chat.id, random.choice(gifs))
         time.sleep(3)
         bot.send_message(message.chat.id, random.choice(coins), reply_markup=keyboard1)
     elif message.text.lower() == 'я передумал':
