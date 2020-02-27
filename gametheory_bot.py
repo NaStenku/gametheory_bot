@@ -14,7 +14,7 @@ keyboard2 = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
 keyboard2.row('Бросай', 'Я передумал')
 
 coins = ['Орел', 'Решка']
-
+gifs = ['CgACAgQAAxkBAAOrXlgfr4vgSsgEx1x5mSCf1c1gbksAAjMCAALaGsVSIEfyIMqk3c8YBA', 'CgACAgQAAxkBAAMwXlged-4mqwH4nKjwH2HOMsjawegAAuIBAAJQZK1S-ij8UFKnJnkYBA', "CgACAgQAAxkBAAM7Xlge168xc8bAqwvy5Q0GTFzxKdwAAuEBAAKDgsxSBy2xFGe2s8MYBA", "CgACAgQAAxkBAAM8XlgfDB40j0IQMxxushnCnV9tCJcAAwIAApE4xVLelntF4vfEIBgE", "CgACAgQAAxkBAAOsXlggFWvXkKMAAQWG7ecK1ysV_lraAAK4AQACIdDNUiv7kDf0TWBsGAQ"]
 
 
 @bot.message_handler(commands=['start'])
@@ -34,7 +34,7 @@ def send_text(message):
 def flip(message): 
     if message.text.lower() == 'бросай':
         bot.send_message(message.chat.id, 'Но ты ведь знаешь, что решение принимается тогда, когда монетка еще в полете? Она летиииит')
-        bot.send_animation(message.chat.id, 'https://i.gifer.com/Ilp.gif')
+        bot.send_document(message.chat.id, random.choice(gifs))
         time.sleep(3)
         bot.send_message(message.chat.id, random.choice(coins), reply_markup=keyboard1)
     elif message.text.lower() == 'я передумал':
