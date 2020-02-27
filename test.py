@@ -15,7 +15,7 @@ keyboard2.row('Бросай', 'Я передумал')
 
 coins = ['Орел', 'Решка']
 gifs = ['CgACAgQAAxkBAAOrXlgfr4vgSsgEx1x5mSCf1c1gbksAAjMCAALaGsVSIEfyIMqk3c8YBA', 'CgACAgQAAxkBAAMwXlged-4mqwH4nKjwH2HOMsjawegAAuIBAAJQZK1S-ij8UFKnJnkYBA', "CgACAgQAAxkBAAM7Xlge168xc8bAqwvy5Q0GTFzxKdwAAuEBAAKDgsxSBy2xFGe2s8MYBA", "CgACAgQAAxkBAAM8XlgfDB40j0IQMxxushnCnV9tCJcAAwIAApE4xVLelntF4vfEIBgE", "CgACAgQAAxkBAAOsXlggFWvXkKMAAQWG7ecK1ysV_lraAAK4AQACIdDNUiv7kDf0TWBsGAQ"]
-
+gifs.replace(/\n$/, "")
 
 @bot.message_handler(commands=['start'])
 def start_message(message):

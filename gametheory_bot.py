@@ -14,7 +14,8 @@ keyboard2 = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
 keyboard2.row('Бросай', 'Я передумал')
 
 coins = ['Орел', 'Решка']
-gifs = ['CgACAgQAAxkBAAOrXlgfr4vgSsgEx1x5mSCf1c1gbksAAjMCAALaGsVSIEfyIMqk3c8YBA', 'CgACAgQAAxkBAAMwXlged-4mqwH4nKjwH2HOMsjawegAAuIBAAJQZK1S-ij8UFKnJnkYBA', "CgACAgQAAxkBAAM7Xlge168xc8bAqwvy5Q0GTFzxKdwAAuEBAAKDgsxSBy2xFGe2s8MYBA", "CgACAgQAAxkBAAM8XlgfDB40j0IQMxxushnCnV9tCJcAAwIAApE4xVLelntF4vfEIBgE", "CgACAgQAAxkBAAOsXlggFWvXkKMAAQWG7ecK1ysV_lraAAK4AQACIdDNUiv7kDf0TWBsGAQ"]
+gifs = ["https://media.giphy.com/media/1QkVRf2QQ4DCJ7Q115/giphy.gif", "https://media.giphy.com/media/a8TIlyVS7JixO/giphy.gif", "https://media.giphy.com/media/q0ejq5xiOChlS/giphy.gif", 
+"https://media.giphy.com/media/38WXjbSM27fIQ/giphy.gif", "https://media.giphy.com/media/o9ZsDfUVEJjy0/giphy.gif"]
 
 
 @bot.message_handler(commands=['start'])
