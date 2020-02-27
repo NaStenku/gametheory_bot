@@ -12,11 +12,24 @@ keyboard1 = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
 keyboard1.row('Подбрось монетку', 'Парадокс Монти Холла')
 keyboard2 = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
 keyboard2.row('Бросай', 'Я передумал')
+keyboard3 = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
+keyboard3.row('1', '2', "3")
+keyboard4 = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
 
 coins = ['Орел', 'Решка']
 gifs = ["https://media.giphy.com/media/1QkVRf2QQ4DCJ7Q115/giphy.gif", "https://media.giphy.com/media/a8TIlyVS7JixO/giphy.gif", "https://media.giphy.com/media/q0ejq5xiOChlS/giphy.gif", 
 "https://media.giphy.com/media/38WXjbSM27fIQ/giphy.gif", "https://media.giphy.com/media/o9ZsDfUVEJjy0/giphy.gif"]
+doors = [1, 2, 3]
+random.shuffle(doors)
+car = random.randint(1, 3)
 
+def get_opened_door():
+    answ1 = list(filter(lambda x: x != car and x != int(choice), doors))[0]
+    return answ1
+
+def get_closed_door():
+    answ2 = list(filter(lambda x: x != int(choice) and x != get_opened_door(), doors))[0]
+    return answ2
 
 @bot.message_handler(commands=['start'])
 def start_message(message):
@@ -25,7 +38,8 @@ def start_message(message):
 @bot.message_handler(content_types=['text'])
 def send_text(message):
     if message.text.lower() == 'парадокс монти холла':
-        bot.send_message(message.chat.id, 'Я еще над этим работаю.', reply_markup=keyboard1)
+        bot.send_message(message.chat.id, "Выбирайте дверь:", reply_markup=keyboard3)
+        bot.register_next_step_handler(message, second_choice)
     elif message.text.lower() == 'подбрось монетку':
         bot.send_message(message.chat.id, 'Итак, я держу монетку. Бросаем?', reply_markup=keyboard2)
         bot.register_next_step_handler(message, flip)
@@ -40,6 +54,53 @@ def flip(message):
         bot.send_message(message.chat.id, random.choice(coins), reply_markup=keyboard1)
     elif message.text.lower() == 'я передумал':
         bot.send_message(message.chat.id, 'Ну как хочешь. Так чем займемся?', reply_markup=keyboard1)
+
+def second_choice(message):
+    global choice
+    global keyboard4
+    if message.text.lower() == "1":
+        choice = "1"
+        doorlist = [choice, str(get_closed_door())]
+        doorlist.sort()
+        keyboard4.row(*doorlist)
+        goat = open('goat.jpg', 'rb')
+        bot.send_message(message.chat.id, f'''Хорошо. Но для начала, я хочу открыть одну из дверей. Мы откроем дверь номер {get_opened_door()} и посмотрим что там.''')
+        time.sleep(2)
+        bot.send_photo(message.chat.id, goat)
+        bot.send_message(message.chat.id, f'''Ой! Тут коза! Ты все еще уверен что хочешь выбрать дверь номер {choice}? ''', reply_markup=keyboard4)
+    bot.register_next_step_handler(message, final)
+    if message.text.lower() == "2":
+        goat = open('goat.jpg', 'rb')
+        choice = "2"
+        doorlist = [choice, str(get_closed_door())]
+        doorlist.sort()
+        keyboard4.row(*doorlist)
+        bot.send_message(message.chat.id, f'''Хорошо. Но для начала, я хочу открыть одну из дверей. Мы откроем дверь номер {get_opened_door()} и посмотрим что там.''')
+        time.sleep(2)
+        bot.send_photo(message.chat.id, goat)
+        bot.send_message(message.chat.id, f'''Ой! Тут коза! Ты все еще уверен что хочешь выбрать дверь номер {choice}? ''', reply_markup=keyboard4)
+    bot.register_next_step_handler(message, final)
+    if message.text.lower() == "3":
+        goat = open('goat.jpg', 'rb')
+        choice = "3"
+        doorlist = [choice, str(get_closed_door())]
+        doorlist.sort()
+        keyboard4.row(*doorlist)
+        bot.send_message(message.chat.id, f'''Хорошо. Но для начала, я хочу открыть одну из дверей. Мы откроем дверь номер {get_opened_door()} и посмотрим что там.''')
+        time.sleep(2)
+        bot.send_photo(message.chat.id, goat)
+        bot.send_message(message.chat.id, f'''Ой! Тут коза! Ты все еще уверен что хочешь выбрать дверь номер {choice}? ''', reply_markup=keyboard4)
+    bot.register_next_step_handler(message, final)
+
+def final (message):
+    if int(message.text.lower()) == car:
+        car_photo = open('car.png', 'rb')
+        bot.send_photo(message.chat.id, car_photo)
+        bot.send_message(message.chat.id, "Поздравляем! Ты выиграл ааааавтомобиль!", reply_markup=keyboard1)
+    elif int(message.text.lower()) != car:
+        goat2 = open('goat_2.jpg', 'rb')
+        bot.send_photo(message.chat.id, goat2)
+        bot.send_message(message.chat.id, "Эх, тебе досталась коза", reply_markup=keyboard1)
 
     
 
