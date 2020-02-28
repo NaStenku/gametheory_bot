@@ -38,7 +38,7 @@ def start_message(message):
 @bot.message_handler(content_types=['text'])
 def send_text(message):
     if message.text.lower() == 'парадокс монти холла':
-        bot.send_message(message.chat.id, "Выбирайте дверь:", reply_markup=keyboard3)
+        bot.send_message(message.chat.id, "Представь, что ты участник игры, в которой тебе нужно выбрать одну из трёх дверей. За одной из дверей находится автомобиль, за двумя другими дверями — козы. Какую дверь выбираешь?", reply_markup=keyboard3)
         bot.register_next_step_handler(message, second_choice)
     elif message.text.lower() == 'подбрось монетку':
         bot.send_message(message.chat.id, 'Итак, я держу монетку. Бросаем?', reply_markup=keyboard2)
