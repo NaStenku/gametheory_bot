@@ -67,7 +67,7 @@ def second_choice(message):
         keyboard4.row(*doorlist)
         goat = open('goat.jpg', 'rb')
         bot.send_message(message.chat.id, f'''Хорошо. Но для начала, я хочу открыть одну из дверей. Мы откроем дверь номер {get_opened_door()} и посмотрим что там.''')
-        time.sleep(2)
+        time.sleep(1)
         bot.send_photo(message.chat.id, goat)
         bot.send_message(message.chat.id, f'''Ой! Тут коза! Ты все еще уверен что хочешь выбрать дверь номер {choice}? ''', reply_markup=keyboard4)
         bot.register_next_step_handler(message, final)
@@ -79,7 +79,7 @@ def second_choice(message):
         keyboard4 = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
         keyboard4.row(*doorlist)
         bot.send_message(message.chat.id, f'''Хорошо. Но для начала, я хочу открыть одну из дверей. Мы откроем дверь номер {get_opened_door()} и посмотрим что там.''')
-        time.sleep(2)
+        time.sleep(1)
         bot.send_photo(message.chat.id, goat)
         bot.send_message(message.chat.id, f'''Ой! Тут коза! Ты все еще уверен что хочешь выбрать дверь номер {choice}? ''', reply_markup=keyboard4)
         bot.register_next_step_handler(message, final)
@@ -91,7 +91,7 @@ def second_choice(message):
         keyboard4 = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
         keyboard4.row(*doorlist)
         bot.send_message(message.chat.id, f'''Хорошо. Но для начала, я хочу открыть одну из дверей. Мы откроем дверь номер {get_opened_door()} и посмотрим что там.''')
-        time.sleep(2)
+        time.sleep(1)
         bot.send_photo(message.chat.id, goat)
         bot.send_message(message.chat.id, f'''Ой! Тут коза! Ты все еще уверен что хочешь выбрать дверь номер {choice}? ''', reply_markup=keyboard4)
         bot.register_next_step_handler(message, final)
@@ -124,4 +124,4 @@ def webhook():
     return "!", 200
 
 if __name__ == "__main__":
-    server.run(host ="0.0.0.0", port = int(os.environ.get("PORT", "443")))
+    server.run(host ="0.0.0.0", port = int(os.environ.get("PORT", 5000)))
