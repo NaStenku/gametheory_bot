@@ -7,7 +7,6 @@ import os
 TOKEN = '731187754:AAE4Z-g-KEMtBBL8vZq-rykJVobm3EsTB8A'
 bot = telebot.TeleBot(token = TOKEN)
 server = Flask(__name__)
-updater = Updater(TOKEN)
 
 keyboard1 = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
 keyboard1.row('Подбрось монетку', 'Парадокс Монти Холла')
