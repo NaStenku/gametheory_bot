@@ -99,11 +99,21 @@ def final (message):
     if int(message.text.lower()) == car:
         car_photo = open('car.png', 'rb')
         bot.send_photo(message.chat.id, car_photo)
-        bot.send_message(message.chat.id, "Поздравляем! Ты выиграл ааааавтомобиль!", reply_markup=keyboard1)
+        link_markup = telebot.types.InlineKeyboardMarkup()
+        link_hall= telebot.types.InlineKeyboardButton(text='Почитать про парадокс', url='https://ru.wikipedia.org/wiki/%D0%9F%D0%B0%D1%80%D0%B0%D0%B4%D0%BE%D0%BA%D1%81_%D0%9C%D0%BE%D0%BD%D1%82%D0%B8_%D0%A5%D0%BE%D0%BB%D0%BB%D0%B0')
+        link_markup.add(link_hall)
+        bot.send_message(message.chat.id, "Поздравляем! Ты выиграл ааааавтомобиль!", reply_markup=link_markup)
+        time.sleep(1)
+        bot.send_message(message.chat.id, "Чем теперь займемся?", reply_markup=keyboard1)
     elif int(message.text.lower()) != car:
         goat2 = open('goat_2.jpg', 'rb')
         bot.send_photo(message.chat.id, goat2)
-        bot.send_message(message.chat.id, "Эх, тебе досталась коза", reply_markup=keyboard1)
+        link_markup = telebot.types.InlineKeyboardMarkup()
+        link_hall= telebot.types.InlineKeyboardButton(text='Почитать про парадокс', url='https://ru.wikipedia.org/wiki/%D0%9F%D0%B0%D1%80%D0%B0%D0%B4%D0%BE%D0%BA%D1%81_%D0%9C%D0%BE%D0%BD%D1%82%D0%B8_%D0%A5%D0%BE%D0%BB%D0%BB%D0%B0')
+        link_markup.add(link_hall)
+        bot.send_message(message.chat.id, "Эх, тебе досталась коза", reply_markup=link_markup)
+        time.sleep(1)
+        bot.send_message(message.chat.id, "Чем теперь займемся?", reply_markup=keyboard1)
 
     
 
