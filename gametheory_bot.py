@@ -21,7 +21,6 @@ gifs = ["https://media.giphy.com/media/1QkVRf2QQ4DCJ7Q115/giphy.gif", "https://m
 "https://media.giphy.com/media/38WXjbSM27fIQ/giphy.gif", "https://media.giphy.com/media/o9ZsDfUVEJjy0/giphy.gif"]
 doors = [1, 2, 3]
 random.shuffle(doors)
-car = random.randint(1, 3)
 
 def get_opened_door():
     answ1 = list(filter(lambda x: x != car and x != int(choice), doors))[0]
@@ -57,9 +56,10 @@ def flip(message):
 
 def second_choice(message):
     global choice
-    # global keyboard4
+    global car
     if message.text.lower() == "1":
         choice = "1"
+        car = random.randint(1, 3)
         doorlist = [choice, str(get_closed_door())]
         doorlist.sort()
         keyboard4 = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -73,6 +73,7 @@ def second_choice(message):
     if message.text.lower() == "2":
         goat = open('goat.jpg', 'rb')
         choice = "2"
+        car = random.randint(1, 3)
         doorlist = [choice, str(get_closed_door())]
         doorlist.sort()
         keyboard4 = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -85,6 +86,7 @@ def second_choice(message):
     if message.text.lower() == "3":
         goat = open('goat.jpg', 'rb')
         choice = "3"
+        car = random.randint(1, 3)
         doorlist = [choice, str(get_closed_door())]
         doorlist.sort()
         keyboard4 = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -117,9 +119,9 @@ def final (message):
 
     
 
-@bot.message_handler(content_types=['document'])
-def sticker_id(message):
-        print (message)
+# @bot.message_handler(content_types=['document'])
+# def sticker_id(message):
+#         print (message)
 
 @server.route ('/' + TOKEN, methods = ["POST"])
 def getMessage():

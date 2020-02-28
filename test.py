@@ -22,14 +22,15 @@ gifs = ["https://media.giphy.com/media/1QkVRf2QQ4DCJ7Q115/giphy.gif", "https://m
 "https://media.giphy.com/media/38WXjbSM27fIQ/giphy.gif", "https://media.giphy.com/media/o9ZsDfUVEJjy0/giphy.gif"]
 doors = [1, 2, 3]
 random.shuffle(doors)
-car = random.randint(1, 3)
+
+
 
 def get_opened_door():
     answ1 = list(filter(lambda x: x != car and x != int(choice), doors))[0]
     return answ1
 
 def get_closed_door():
-    answ2 = list(filter(lambda x: x != int(choice) and x != get_opened_door(), doors))[0]
+    answ2 = list(filter(lambda x: x != int(choice) and x != int(get_opened_door()), doors))[0]
     return answ2
 
 @bot.message_handler(commands=['start'])
@@ -58,8 +59,9 @@ def flip(message):
 
 def second_choice(message):
     global choice
-    # global keyboard4
+    global car
     if message.text.lower() == "1":
+        car = random.randint(1, 3)
         choice = "1"
         doorlist = [choice, str(get_closed_door())]
         doorlist.sort()
@@ -73,6 +75,7 @@ def second_choice(message):
         bot.register_next_step_handler(message, final)
     if message.text.lower() == "2":
         goat = open('goat.jpg', 'rb')
+        car = random.randint(1, 3)
         choice = "2"
         doorlist = [choice, str(get_closed_door())]
         doorlist.sort()
@@ -84,6 +87,7 @@ def second_choice(message):
         bot.send_message(message.chat.id, f'''Ой! Тут коза! Ты все еще уверен что хочешь выбрать дверь номер {choice}? ''', reply_markup=keyboard4)
         bot.register_next_step_handler(message, final)
     if message.text.lower() == "3":
+        car = random.randint(1, 3)
         goat = open('goat.jpg', 'rb')
         choice = "3"
         doorlist = [choice, str(get_closed_door())]
