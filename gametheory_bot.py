@@ -7,6 +7,7 @@ import os
 TOKEN = '731187754:AAE4Z-g-KEMtBBL8vZq-rykJVobm3EsTB8A'
 bot = telebot.TeleBot(token = TOKEN)
 server = Flask(__name__)
+updater = Updater(TOKEN)
 
 keyboard1 = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
 keyboard1.row('Подбрось монетку', 'Парадокс Монти Холла')
@@ -123,4 +124,4 @@ def webhook():
     return "!", 200
 
 if __name__ == "__main__":
-    server.run(host ="0.0.0.0", port = int(os.environ.get("PORT", 5000)))
+    server.run(host ="0.0.0.0", port = int(os.environ.get("PORT", "443")))
