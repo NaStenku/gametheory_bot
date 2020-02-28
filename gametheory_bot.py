@@ -14,7 +14,7 @@ keyboard2 = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
 keyboard2.row('Бросай', 'Я передумал')
 keyboard3 = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
 keyboard3.row('1', '2', "3")
-keyboard4 = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
+
 
 coins = ['Орел', 'Решка']
 gifs = ["https://media.giphy.com/media/1QkVRf2QQ4DCJ7Q115/giphy.gif", "https://media.giphy.com/media/a8TIlyVS7JixO/giphy.gif", "https://media.giphy.com/media/q0ejq5xiOChlS/giphy.gif", 
@@ -57,11 +57,12 @@ def flip(message):
 
 def second_choice(message):
     global choice
-    global keyboard4
+    # global keyboard4
     if message.text.lower() == "1":
         choice = "1"
         doorlist = [choice, str(get_closed_door())]
         doorlist.sort()
+        keyboard4 = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
         keyboard4.row(*doorlist)
         goat = open('goat.jpg', 'rb')
         bot.send_message(message.chat.id, f'''Хорошо. Но для начала, я хочу открыть одну из дверей. Мы откроем дверь номер {get_opened_door()} и посмотрим что там.''')
@@ -74,6 +75,7 @@ def second_choice(message):
         choice = "2"
         doorlist = [choice, str(get_closed_door())]
         doorlist.sort()
+        keyboard4 = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
         keyboard4.row(*doorlist)
         bot.send_message(message.chat.id, f'''Хорошо. Но для начала, я хочу открыть одну из дверей. Мы откроем дверь номер {get_opened_door()} и посмотрим что там.''')
         time.sleep(2)
@@ -85,6 +87,7 @@ def second_choice(message):
         choice = "3"
         doorlist = [choice, str(get_closed_door())]
         doorlist.sort()
+        keyboard4 = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
         keyboard4.row(*doorlist)
         bot.send_message(message.chat.id, f'''Хорошо. Но для начала, я хочу открыть одну из дверей. Мы откроем дверь номер {get_opened_door()} и посмотрим что там.''')
         time.sleep(2)
@@ -101,7 +104,6 @@ def final (message):
         goat2 = open('goat_2.jpg', 'rb')
         bot.send_photo(message.chat.id, goat2)
         bot.send_message(message.chat.id, "Эх, тебе досталась коза", reply_markup=keyboard1)
-    keyboard4.row()
 
     
 
