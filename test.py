@@ -66,7 +66,6 @@ def flip(message):
 
 def second_choice(message):
     global choice
-    global keyboard4
     if message.text.lower() == "1":
         choice = "1"
         doorlist = [choice, str(get_closed_door())]
@@ -94,7 +93,7 @@ def second_choice(message):
         choice = "3"
         doorlist = [choice, str(get_closed_door())]
         doorlist.sort()
-        keyboard4.row(*doorlist)
+        keyboard4.row(doorlist)
         bot.send_message(message.chat.id, f'''Хорошо. Но для начала, я хочу открыть одну из дверей. Мы откроем дверь номер {get_opened_door()} и посмотрим что там.''')
         time.sleep(2)
         bot.send_photo(message.chat.id, goat)

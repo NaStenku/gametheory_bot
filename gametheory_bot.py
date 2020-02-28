@@ -68,7 +68,7 @@ def second_choice(message):
         time.sleep(2)
         bot.send_photo(message.chat.id, goat)
         bot.send_message(message.chat.id, f'''Ой! Тут коза! Ты все еще уверен что хочешь выбрать дверь номер {choice}? ''', reply_markup=keyboard4)
-    bot.register_next_step_handler(message, final)
+        bot.register_next_step_handler(message, final)
     if message.text.lower() == "2":
         goat = open('goat.jpg', 'rb')
         choice = "2"
@@ -79,7 +79,7 @@ def second_choice(message):
         time.sleep(2)
         bot.send_photo(message.chat.id, goat)
         bot.send_message(message.chat.id, f'''Ой! Тут коза! Ты все еще уверен что хочешь выбрать дверь номер {choice}? ''', reply_markup=keyboard4)
-    bot.register_next_step_handler(message, final)
+        bot.register_next_step_handler(message, final)
     if message.text.lower() == "3":
         goat = open('goat.jpg', 'rb')
         choice = "3"
@@ -90,7 +90,7 @@ def second_choice(message):
         time.sleep(2)
         bot.send_photo(message.chat.id, goat)
         bot.send_message(message.chat.id, f'''Ой! Тут коза! Ты все еще уверен что хочешь выбрать дверь номер {choice}? ''', reply_markup=keyboard4)
-    bot.register_next_step_handler(message, final)
+        bot.register_next_step_handler(message, final)
 
 def final (message):
     if int(message.text.lower()) == car:
@@ -101,6 +101,7 @@ def final (message):
         goat2 = open('goat_2.jpg', 'rb')
         bot.send_photo(message.chat.id, goat2)
         bot.send_message(message.chat.id, "Эх, тебе досталась коза", reply_markup=keyboard1)
+    keyboard4.row()
 
     
 
