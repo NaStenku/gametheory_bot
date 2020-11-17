@@ -1,6 +1,6 @@
 # Game theory python bot
 
-Game theory python bot is This is a bot with two fun games. The first is a coin toss. The second is the Monty Hall paradox.
+Game theory python bot contains the following funny games: coin toss, Monty Hall paradox
 
 ## Installation
 
