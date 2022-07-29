@@ -1,5 +1,7 @@
 # Game theory python bot
 
+[Certificate Python Course](https://github.com/NaStenku/Certificates/blob/master/Python.pdf)
+
 Game theory python bot contains the following funny games: coin toss, Monty Hall paradox
 
 ## Installation
