@@ -42,8 +42,6 @@ def send_text(message):
     elif message.text.lower() == 'подбрось монетку':
         bot.send_message(message.chat.id, 'Итак, я держу монетку. Бросаем?', reply_markup=keyboard2)
         bot.register_next_step_handler(message, flip)
-    elif message.text.lower() == 'я тебя люблю':
-        bot.send_sticker(message.chat.id, 'CAADAgADZgkAAnlc4gmfCor5YbYYRAI')
 
 def flip(message): 
     if message.text.lower() == 'бросай':
